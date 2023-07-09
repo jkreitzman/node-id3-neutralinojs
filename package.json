@@ -1,6 +1,6 @@
 {
   "name": "@jkreitzman/node-id3-neutralinojs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Pure JavaScript ID3v2 Tag writer and reader for neutralinojs",
   "author": "JesseK",
   "main": "dist/index.js",
