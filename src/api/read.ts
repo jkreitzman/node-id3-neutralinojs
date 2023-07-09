@@ -1,8 +1,6 @@
-import * as fs from 'fs'
-import { getTagsFromId3Tag } from '../id3-tag'
-import { isFunction, isString } from '../util'
-import { Tags, TagIdentifiers } from '../types/Tags'
-import { Options } from '../types/Options'
+import { getTagsFromId3Tag } from "../id3-tag"
+import { Tags, TagIdentifiers } from "../types/Tags"
+import { Options } from "../types/Options"
 
 /**
  * Callback signature for successful asynchronous read operation.
@@ -11,85 +9,32 @@ import { Options } from '../types/Options'
  *               `Tags`
  * @public
  */
-export type ReadSuccessCallback =
-    (error: null, tags: Tags | TagIdentifiers) => void
+export type ReadSuccessCallback = (
+  error: null,
+  tags: Tags | TagIdentifiers
+) => void
 
 /**
  * Callback signatures for failing asynchronous read operation.
  *
  * @public
  */
-export type ReadErrorCallback =
-    (error: NodeJS.ErrnoException | Error, tags: null) => void
+export type ReadErrorCallback = (
+  error: NodeJS.ErrnoException | Error,
+  tags: null
+) => void
 
 /**
  * Callback signatures for asynchronous read operation.
  *
  * @public
  */
-export type ReadCallback =
-    ReadSuccessCallback & ReadErrorCallback
-
-/**
- * Reads ID3-Tags synchronously from passed buffer/filepath.
- *
- * @public
- */
-export function read(filebuffer: string | Buffer, options?: Options): Tags
-
-/**
- * Reads ID3-Tags asynchronously from passed buffer/filepath.
- *
- * @public
- */
-export function read(filebuffer: string | Buffer, callback: ReadCallback): void
-
-/**
- * Reads ID3-Tags asynchronously from passed buffer/filepath.
- *
- * @public
- */
-export function read(
-    filebuffer: string | Buffer, options: Options, callback: ReadCallback
-): void
+export type ReadCallback = ReadSuccessCallback & ReadErrorCallback
 
 export function read(
-    filebuffer: string | Buffer,
-    optionsOrCallback?: Options | ReadCallback,
-    callback?: ReadCallback
+  buffer: Buffer,
+  options: Options,
+  callback: ReadCallback
 ): Tags | TagIdentifiers | void {
-    const options: Options =
-        (isFunction(optionsOrCallback) ? {} : optionsOrCallback) ?? {}
-    callback =
-        isFunction(optionsOrCallback) ? optionsOrCallback : callback
-
-    if (isFunction(callback)) {
-        return readAsync(filebuffer, options, callback)
-    }
-    return readSync(filebuffer, options)
-}
-
-function readSync(filebuffer: string | Buffer, options: Options) {
-    if (isString(filebuffer)) {
-        filebuffer = fs.readFileSync(filebuffer)
-    }
-    return getTagsFromId3Tag(filebuffer, options)
-}
-
-function readAsync(
-    filebuffer: string | Buffer,
-    options: Options,
-    callback: ReadCallback
-) {
-    if (isString(filebuffer)) {
-        fs.readFile(filebuffer, (error, data) => {
-            if(error) {
-                callback(error, null)
-            } else {
-                callback(null, getTagsFromId3Tag(data, options))
-            }
-        })
-    } else {
-        callback(null, getTagsFromId3Tag(filebuffer, options))
-    }
+  return callback(null, getTagsFromId3Tag(buffer, options))
 }
