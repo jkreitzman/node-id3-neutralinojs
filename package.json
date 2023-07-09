@@ -1,17 +1,11 @@
 {
-  "name": "node-id3",
-  "version": "0.2.7",
-  "description": "Pure JavaScript ID3v2 Tag writer and reader",
-  "author": "Jan Metzger <jan.metzger@gmx.net>",
+  "name": "@jkreitzman/node-id3-neutralinojs",
+  "version": "0.0.1",
+  "description": "Pure JavaScript ID3v2 Tag writer and reader for neutralinojs",
+  "author": "JesseK",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Zazama/node-id3.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Zazama/node-id3/issues"
-  },
+  "repository": "https://github.com/jkreitzman/node-id3-neutralinojs.git",
   "keywords": [
     "ID3",
     "ID3v2",
@@ -24,10 +18,10 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/Zazama/node-id3/raw/master/LICENSE"
+      "url": "https://github.com/jkreitzman/node-id3-neutralinojs/raw/master/LICENSE"
     }
   ],
-  "homepage": "https://github.com/Zazama/node-id3#readme",
+  "homepage": "https://github.com/jkreitzman/node-id3-neutralinojs#readme",
   "directories": {
     "example": "dist/example"
   },
@@ -47,16 +41,11 @@
     "iconv-lite": "0.6.2"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.4",
-    "@types/chai-as-promised": "^7.1.5",
     "@types/jsmediatags": "^3.9.3",
-    "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.10",
     "@types/source-map-support": "^0.5.6",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
-    "chai": "^4.3.7",
-    "chai-as-promised": "^7.1.1",
     "eslint": "^8.28.0",
     "eslint-plugin-mocha": "^10.1.0",
     "jsmediatags": "^3.9.3",
